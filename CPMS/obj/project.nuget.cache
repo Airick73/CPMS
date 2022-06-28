@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "bLRXp1I+RWY7k4Gl3fw7GkZoalRe4DpSNaT2jOo4C0wf4a52WkA6IlWk9+wSRo/EYKbxIfkkyK8oi9+kPvVE+w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Eric\\source\\repos\\CPMS\\CPMS\\CPMS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Eric\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
+  ],
+  "logs": []
+}
