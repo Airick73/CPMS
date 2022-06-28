@@ -23,7 +23,17 @@ namespace CPMS.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult TableMaintenance()
+        {
+            return View();
+        }
+
+        public IActionResult BridgeTableMaintenance()
+        {
+            return View();
+        }
+
+        public IActionResult Report()
         {
             return View();
         }
