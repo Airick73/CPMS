@@ -156,3 +156,14 @@ C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\bin\Debug\net5.0\runtimes\win
 C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Home\TableMaintenance.cshtml.g.cs
 C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Home\BridgeTableMaintenance.cshtml.g.cs
 C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Home\Report.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\CPMS.Properties.Resources.resources
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\CPMS.csproj.GenerateResource.cache
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\bin\Debug\net5.0\System.Data.SqlClient.dll
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\bin\Debug\net5.0\runtimes\win-x64\native\sni.dll
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\bin\Debug\net5.0\Microsoft.SqlServer.Types.dll
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Home\AddAuthor.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Home\ModifyAuthor.cshtml.g.cs
