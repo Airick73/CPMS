@@ -298,3 +298,8 @@ C:\Users\Eric\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\CPMS.csproj.CopyComple
 C:\Users\Eric\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\CPMS.genruntimeconfig.cache
 C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Home\AddReview.cshtml.g.cs
 C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Home\ModifyReview.cshtml.g.cs
+C:\Users\Eric\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Home\AddReview.cshtml.g.cs
+C:\Users\Eric\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Home\ModifyReview.cshtml.g.cs
+C:\Users\Eric\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Login\Index.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Login\Index.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Author\Index.cshtml.g.cs
