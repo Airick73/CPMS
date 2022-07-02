@@ -12,7 +12,7 @@ namespace CPMS.Controllers
     public class HomeController : Controller
     {
         SqlCommand com = new SqlCommand(); 
-        SqlDataReader dr;
+        SqlDataReader dr; 
         SqlConnection con = new SqlConnection();
         List<AuthorModel> authors = new List<AuthorModel>();
         List<ReviewModel> reviews = new List<ReviewModel>();
@@ -313,7 +313,9 @@ namespace CPMS.Controllers
                         ComfortLevelTopic = dr["ComfortLevelTopic"].ToString()
                     ,
                         ComfortLevelAcceptability = dr["ComfortLevelAcceptability"].ToString()
-                });
+                    ,
+                        Complete = dr["Complete"].ToString()
+                    });
                 }
                 con.Close();
             }
@@ -329,7 +331,185 @@ namespace CPMS.Controllers
             {
                 con.Open();
                 com.Connection = con;
-                com.CommandText = "INSERT INTO Review (AppropriatenessOfTopic, MiddleInitial, LastName, Affiliation, Department, Address, City, State, ZipCode, PhoneNumber, EmailAddress, Password) VALUES ('" + author.FirstName + "', '" + author.MiddleInitial + "', '" + author.LastName + "', '" + author.Affiliation + "', '" + author.Department + "', '" + author.Address + "', '" + author.City + "', '" + author.State + "', '" + author.ZipCode + "', '" + author.PhoneNumber + "', '" + author.EmailAddress + "','" + author.Password + "')";
+                com.CommandText =   "INSERT INTO Review " +
+                                    "(AppropriatenessOfTopic, " +
+                                    "TimelinessOfTopic, " +
+                                    "SupportiveEvidence, " +
+                                    "TechnicalQuality, " +
+                                    "ScopeOfCoverage, " +
+                                    "CitationOfPreviousWork, " +
+                                    "Originality, " +
+                                    "ContentComments, " +
+                                    "OrganizationOfPaper, " +
+                                    "ClarityOfMainMessage, " +
+                                    "Mechanics, " +
+                                    "WrittenDocumentComments, " +
+                                    "SuitabilityForPresentation, " +
+                                    "PotentialInterestInTopic, " +
+                                    "PotentialForOralPresentationComments, " +
+                                    "OverallRating, " +
+                                    "OverallRatingComments, " +
+                                    "ComfortLevelTopic, " +
+                                    "ComfortLevelAcceptability, " +
+                                    "Complete) " +
+                                    "VALUES " +
+                                    "('" + review.AppropriatenessOfTopic + "', " +
+                                    "'" + review.TimelinessOfTopic + "', " +
+                                    "'" + review.SupportiveEvidence + "', " +
+                                    "'" + review.TechnicalQuality + "', " +
+                                    "'" + review.ScopeOfCoverage + "', " +
+                                    "'" + review.CitationOfPreviousWork + "', " +
+                                    "'" + review.Originality + "', " +
+                                    "'" + review.ContentComments + "', " +
+                                    "'" + review.OrganizationOfPaper + "', " +
+                                    "'" + review.ClarityOfMainMessage + "', " +
+                                    "'" + review.Mechanics + "'," +
+                                    "'" + review.WrittenDocumentComments + "'," +
+                                    "'" + review.SuitabilityForPresentation + "'," +
+                                    "'" + review.PotentialInterestInTopic + "'," +
+                                    "'" + review.PotentialForOralPresentationComments + "'," +
+                                    "'" + review.OverallRating + "'," +
+                                    "'" + review.OverallRatingComments + "'," +
+                                    "'" + review.ComfortLevelTopic + "'," +
+                                    "'" + review.ComfortLevelAcceptability + "'," +
+                                    "'" + review.Complete + "')";
+                com.ExecuteReader();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return View("Index");
+        }
+
+        //function that takes in ReviewID from BridgeTableMaintenance view and writes query to Delete review where ReviewID
+        //lots of boiler plate code to open connection...set connection to command...execute sql command
+        public IActionResult DeleteReviewData(string ReviewID)
+        {
+            try
+            {
+                con.Open();
+                com.Connection = con;
+                com.CommandText = "DELETE FROM Review WHERE ReviewID='" + ReviewID + "'";
+                com.ExecuteReader();
+                con.Close();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return View("Index"); //After delete return to home page
+        }
+
+        //function to modify review where ReviewID 
+        //lots of boiler plate code to open connection...set connection to command...execute sql command
+        public IActionResult ModifyReview(string ReviewID)
+        {
+            
+            try
+            {
+                con.Open();
+                com.Connection = con;
+                com.CommandText = com.CommandText = "SELECT " +
+                                                    "[ReviewID], " +
+                                                    "[AppropriatenessOfTopic], " +
+                                                    "[TimelinessOfTopic], " +
+                                                    "[SupportiveEvidence], " +
+                                                    "[TechnicalQuality], " +
+                                                    "[ScopeOfCoverage], " +
+                                                    "[CitationOfPreviousWork], " +
+                                                    "[Originality], " +
+                                                    "[ContentComments], " +
+                                                    "[OrganizationOfPaper], " +
+                                                    "[ClarityOfMainMessage], " +
+                                                    "[Mechanics], " +
+                                                    "[WrittenDocumentComments], " +
+                                                    "[SuitabilityForPresentation], " +
+                                                    "[PotentialInterestInTopic], " +
+                                                    "[PotentialForOralPresentationComments], " +
+                                                    "[OverallRating], " +
+                                                    "[OverallRatingComments], " +
+                                                    "[ComfortLevelTopic], " +
+                                                    "[ComfortLevelAcceptability], " +
+                                                    "[Complete] " +
+                                                    "FROM " +
+                                                    "[CPMS].[dbo].[Review] " +
+                                                    "WHERE " +
+                                                    "ReviewID='" + ReviewID + "'";
+                                  
+                                  
+                dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    //Storing row elements in ViewBag variables
+                    //ViewBag variables set as default values in ModifyAuthor view
+                    ViewBag.ReviewID = dr["ReviewID"].ToString();
+                    ViewBag.AppropriatenessOfTopic = dr["AppropriatenessOfTopic"].ToString();
+                    ViewBag.TimelinessOfTopic = dr["TimelinessOfTopic"].ToString();
+                    ViewBag.SupportiveEvidence = dr["SupportiveEvidence"].ToString();
+                    ViewBag.TechnicalQuality = dr["TechnicalQuality"].ToString();
+                    ViewBag.ScopeOfCoverage = dr["ScopeOfCoverage"].ToString();
+                    ViewBag.CitationOfPreviousWork = dr["CitationOfPreviousWork"].ToString();
+                    ViewBag.Originality = dr["Originality"].ToString();
+                    ViewBag.ContentComments = dr["ContentComments"].ToString();
+                    ViewBag.OrganizationOfPaper = dr["OrganizationOfPaper"].ToString();
+                    ViewBag.ClarityOfMainMessage = dr["ClarityOfMainMessage"].ToString();
+                    ViewBag.Mechanics = dr["Mechanics"].ToString();
+                    ViewBag.WrittenDocumentComments = dr["WrittenDocumentComments"].ToString();
+                    ViewBag.SuitabilityForPresentation = dr["SuitabilityForPresentation"].ToString();
+                    ViewBag.PotentialInterestInTopic = dr["PotentialInterestInTopic"].ToString();
+                    ViewBag.PotentialForOralPresentationComments = dr["PotentialForOralPresentationComments"].ToString();
+                    ViewBag.OverallRating = dr["OverallRating"].ToString();
+                    ViewBag.OverallRatingComments = dr["OverallRatingComments"].ToString();
+                    ViewBag.ComfortLevelTopic = dr["ComfortLevelTopic"].ToString();
+                    ViewBag.ComfortLevelAcceptability = dr["ComfortLevelAcceptability"].ToString();
+                    ViewBag.Complete = dr["Complete"].ToString();
+
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return View();
+        }
+
+        public IActionResult ModifyReviewData(ReviewModel review)
+        {
+            try
+            {
+                con.Open();
+                com.Connection = con;
+                com.CommandText =   "UPDATE " +
+                                    "[CPMS].[dbo].[Review] " +
+                                    "SET " +
+                                    "AppropriatenessOfTopic = '" + review.AppropriatenessOfTopic + "', " +
+                                    "TimelinessOfTopic = '" + review.TimelinessOfTopic + "', " +
+                                    "SupportiveEvidence = '" + review.SupportiveEvidence + "', " +
+                                    "TechnicalQuality = '" + review.TechnicalQuality + "', " +
+                                    "ScopeOfCoverage = '" + review.ScopeOfCoverage + "', " +
+                                    "CitationOfPreviousWork = '" + review.CitationOfPreviousWork + "', " +
+                                    "Originality = '" + review.Originality + "', " +
+                                    "ContentComments = '" + review.ContentComments + "', " +
+                                    "OrganizationOfPaper = '" + review.OrganizationOfPaper + "', " +
+                                    "ClarityOfMainMessage = '" + review.ClarityOfMainMessage + "', " +
+                                    "Mechanics = '" + review.Mechanics + "', " +
+                                    "WrittenDocumentComments = '" + review.WrittenDocumentComments + "', " +
+                                    "SuitabilityForPresentation = '" + review.SuitabilityForPresentation + "', " +
+                                    "PotentialInterestInTopic = '" + review.PotentialInterestInTopic + "', " +
+                                    "PotentialForOralPresentationComments = '" + review.PotentialForOralPresentationComments + "', " +
+                                    "OverallRating = '" + review.OverallRating + "', " +
+                                    "OverallRatingComments = '" + review.OverallRatingComments + "', " +
+                                    "ComfortLevelTopic = '" + review.ComfortLevelTopic + "', " +
+                                    "ComfortLevelAcceptability = '" + review.ComfortLevelAcceptability + "', " +
+                                    "Complete = '" + review.Complete + "' " +
+                                    "WHERE " +
+                                    "ReviewID='" + review.ReviewID + "'";
                 com.ExecuteReader();
                 con.Close();
             }

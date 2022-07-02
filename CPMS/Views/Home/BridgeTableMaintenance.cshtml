@@ -13,7 +13,7 @@
         ,"ScopeOfCoverage"
         ,"CitationOfPreviousWork"
         ,"Originality"
-        ,"ContentComments"
+        ,"ContentComments"  
         ,"OrganizationOfPaper"
         ,"ClarityOfMainMessage"
         ,"Mechanics"
@@ -25,6 +25,7 @@
         ,"OverallRatingComments"
         ,"ComfortLevelTopic"
         ,"ComfortLevelAcceptability"
+        ,"Complete"
         };
 }
 
@@ -32,7 +33,7 @@
 <h1>@ViewData["Title"]</h1>
 
 <a asp-controller="Home" asp-action="AddReview">Add</a>
-<div class="table">
+<div class="table-container">
     <table class="table">
         <thead>
             <tr>
@@ -54,8 +55,8 @@
                     foreach (var Data in Model)
                     {
                         <tr>
-                            <td><a asp-controller="Home" asp-action="ModifyReview" asp-route-AuthID="@Data.ReviewID">Modify</a></td>
-                            <td><a asp-controller="Home" asp-action="DeleteReviewData" asp-route-AuthID="@Data.ReviewID">Delete</a></td>
+                            <td><a asp-controller="Home" asp-action="ModifyReview" asp-route-ReviewID="@Data.ReviewID">Modify</a></td>
+                            <td><a asp-controller="Home" asp-action="DeleteReviewData" asp-route-ReviewID="@Data.ReviewID">Delete</a></td>
                             <td>@Data.ReviewID</td>
                             <td>@Data.PaperID</td>
                             <td>@Data.ReviewerID</td>
@@ -78,6 +79,7 @@
                             <td>@Data.OverallRatingComments</td>
                             <td>@Data.ComfortLevelTopic</td>
                             <td>@Data.ComfortLevelAcceptability</td>
+                            <td>@Data.Complete</td>
                         </tr>
                     }
                 }

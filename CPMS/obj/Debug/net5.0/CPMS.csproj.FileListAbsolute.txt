@@ -296,3 +296,5 @@ C:\Users\Eric\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\CPMS.RazorTargetAssemb
 C:\Users\Eric\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\CPMS.Views.pdb
 C:\Users\Eric\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\CPMS.csproj.CopyComplete
 C:\Users\Eric\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\CPMS.genruntimeconfig.cache
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Home\AddReview.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Home\ModifyReview.cshtml.g.cs

@@ -6681,19 +6681,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Eric\\.nuget\\packages\\": {}
+    "C:\\Users\\jayle\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Eric\\Documents\\GitHub\\CPMS\\CPMS\\CPMS.csproj",
+      "projectUniqueName": "C:\\Users\\jayle\\OneDrive\\Documents\\GitHub\\CPMS\\CPMS\\CPMS.csproj",
       "projectName": "CPMS",
-      "projectPath": "C:\\Users\\Eric\\Documents\\GitHub\\CPMS\\CPMS\\CPMS.csproj",
-      "packagesPath": "C:\\Users\\Eric\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Eric\\Documents\\GitHub\\CPMS\\CPMS\\obj\\",
+      "projectPath": "C:\\Users\\jayle\\OneDrive\\Documents\\GitHub\\CPMS\\CPMS\\CPMS.csproj",
+      "packagesPath": "C:\\Users\\jayle\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jayle\\OneDrive\\Documents\\GitHub\\CPMS\\CPMS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Eric\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jayle\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6742,24 +6742,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[5.0.17, 5.0.17]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -6768,7 +6750,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.409\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   },
