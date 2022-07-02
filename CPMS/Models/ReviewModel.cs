@@ -18,7 +18,7 @@
         public string Mechanics { get; set; }
         public string WrittenDocumentComments { get; set; }
         public string SuitabilityForPresentation { get; set; }
-        public string Potentialstringereststringopic { get; set; }
+        public string PotentialInterestInTopic { get; set; }
         public string PotentialForOralPresentationComments { get; set; }
         public string OverallRating { get; set; }
         public string OverallRatingComments { get; set; }

@@ -24,35 +24,45 @@ namespace CPMS.Controllers
             con.ConnectionString = CPMS.Properties.Resources.ConnectionString;
         }
 
+        //Home page 
         public IActionResult Index()
         {
             return View();
         }
+
+        //Author table page
         public IActionResult TableMaintenance()
         {
             FetchAuthorData();
             return View(authors);
         }
 
+        //Review table page
         public IActionResult BridgeTableMaintenance()
         {
-            return View();
+            FetchReviewData();
+            return View(reviews);
         }
 
+        //Report page
         public IActionResult Report()
         {
             return View();
         }
 
+        //Add author page
         public IActionResult AddAuthor()
         {
             return View();
         }
 
+        //Add review page
         public IActionResult AddReview()
         {
             return View();
         }
+
+
 
         public IActionResult AddAuthorData(AuthorModel author)
         {
@@ -64,7 +74,7 @@ namespace CPMS.Controllers
                 com.ExecuteReader();
                 con.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -72,6 +82,9 @@ namespace CPMS.Controllers
             return View("Index");
         }
 
+
+        //function that takes in AuthID from TableMaintenance view and writes query to Delete author where Auth ID 
+        //lots of boiler plate code to open connection...set connection to command...execute sql command
         public IActionResult DeleteAuthorData(string AuthID)
         {
             try
@@ -87,21 +100,25 @@ namespace CPMS.Controllers
             {
                 throw ex;
             }
-
-            return View("Index");
+            
+            return View("Index"); //After delete return to home page
         }
 
+        //function to modify author where AuthID 
+        //lots of boiler plate code to open connection...set connection to command...execute sql command
         public IActionResult ModifyAuthor(string AuthID)
         {
-            ViewBag.test1 = AuthID;
+            ViewBag.test1 = AuthID; //AuthID stored in ViewBag variable test1 ... may not need in final code
             try
             {
                 con.Open();
                 com.Connection = con;
-                com.CommandText = "SELECT [AuthorID],[FirstName],[MiddleInitial],[LastName],[Affiliation],[Department],[Address],[City],[State],[ZipCode],[PhoneNumber], [EmailAddress], [Password] FROM [CPMS].[dbo].[Author] WHERE AuthorID='"+AuthID+"'";
+                com.CommandText = com.CommandText = "SELECT [AuthorID],[FirstName],[MiddleInitial],[LastName],[Affiliation],[Department],[Address],[City],[State],[ZipCode],[PhoneNumber], [EmailAddress], [Password] FROM [CPMS].[dbo].[Author] WHERE AuthorID='" + AuthID + "'";
                 dr = com.ExecuteReader();
-                while (dr.Read())
+                while (dr.Read()) 
                 {
+                    //Storing row elements in ViewBag variables
+                    //ViewBag variables set as default values in ModifyAuthor view
                     ViewBag.AuthorID = dr["AuthorID"].ToString();
                     ViewBag.FirstName = dr["FirstName"].ToString();
                     ViewBag.MiddleInitial = dr["MiddleInitial"].ToString();
@@ -125,9 +142,11 @@ namespace CPMS.Controllers
             return View();
         }
 
+        //function to ModifyAuthorData takes in AuthorModel class type author
+        //lots of boiler plate code to open connection...set connection to command...execute sql command
         public IActionResult ModifyAuthorData(AuthorModel author)
         {
-            ViewBag.test = ViewBag.AuthorID;
+            ViewBag.test = ViewBag.AuthorID; //AuthorID element stored in test ViewBag variable displayed on homepage...may not need in final code
             try
             {
                 con.Open();
@@ -145,7 +164,8 @@ namespace CPMS.Controllers
         }
 
 
-
+        //function to FetchAuthorData called with TableMaintenance function to display table for authors
+        //lots of boiler plate code to open connection...set connection to command...execute sql command
         private void FetchAuthorData()
         {
             if (authors.Count > 0)
@@ -156,7 +176,20 @@ namespace CPMS.Controllers
             {
                 con.Open();
                 com.Connection = con;
-                com.CommandText = "SELECT TOP (1000) [AuthorID],[FirstName],[MiddleInitial],[LastName],[Affiliation],[Department],[Address],[City],[State],[ZipCode],[PhoneNumber] FROM [CPMS].[dbo].[Author]";
+                com.CommandText = "SELECT TOP (1000) " +
+                                  "[AuthorID]," +
+                                  "[FirstName]," +
+                                  "[MiddleInitial]," +
+                                  "[LastName]," +
+                                  "[Affiliation]," +
+                                  "[Department]," +
+                                  "[Address]," +
+                                  "[City]," +
+                                  "[State]," +
+                                  "[ZipCode]," +
+                                  "[PhoneNumber] " +
+                                  "FROM " +
+                                  "[CPMS].[dbo].[Author]";
                 dr = com.ExecuteReader();
                 while (dr.Read())
                 {
@@ -194,6 +227,8 @@ namespace CPMS.Controllers
             }
         }
 
+        ////function to FetchReviewData called with BridgeTableMaintenace function to display table for reviews
+        //lots of boiler plate code to open connection...set connection to command...execute sql command
         private void FetchReviewData()
         {
             if (reviews.Count > 0)
@@ -204,7 +239,32 @@ namespace CPMS.Controllers
             {
                 con.Open();
                 com.Connection = con;
-                com.CommandText = "SELECT TOP (1000) [ReviewID], [PaperID], [ReviewerID], [AppropriatenessOfTopic], [TimelinessOfTopic], [SupportiveEvidence], [TechnicalQuality], [ScopeOfCoverage], [CitationOfPreviousWork], [Originality], [ContentComments], [OrganizationOfPaper], [ClarityOfMainMessage], [Mechanics], [WrittenDocumentComments], [SuitabilityForPresentation], [PotentialInterestInTopic], [PotentialForOralPresentationComments], [OverallRating], [OverallRatingComments], [ComfortLevelTopic], [ComfortLevelAcceptability], [Complete] FROM [CPMS].[dbo].[Review]";
+                com.CommandText = "SELECT TOP (1000) " +
+                                  "[ReviewID], " +
+                                  "[PaperID], " +
+                                  "[ReviewerID], " +
+                                  "[AppropriatenessOfTopic], " +
+                                  "[TimelinessOfTopic], " +
+                                  "[SupportiveEvidence], " +
+                                  "[TechnicalQuality], " +
+                                  "[ScopeOfCoverage], " +
+                                  "[CitationOfPreviousWork], " +
+                                  "[Originality], " +
+                                  "[ContentComments], " +
+                                  "[OrganizationOfPaper], " +
+                                  "[ClarityOfMainMessage], " +
+                                  "[Mechanics], " +
+                                  "[WrittenDocumentComments], " +
+                                  "[SuitabilityForPresentation], " +
+                                  "[PotentialInterestInTopic], " +
+                                  "[PotentialForOralPresentationComments], " +
+                                  "[OverallRating], " +
+                                  "[OverallRatingComments], " +
+                                  "[ComfortLevelTopic], " +
+                                  "[ComfortLevelAcceptability], " +
+                                  "[Complete] " +
+                                  "FROM " +
+                                  "[CPMS].[dbo].[Review]";
                 dr = com.ExecuteReader();
                 while (dr.Read())
                 {
@@ -217,23 +277,43 @@ namespace CPMS.Controllers
                         ReviewerID = dr["ReviewerID"].ToString()
                     ,
                         AppropriatenessOfTopic = dr["AppropriatenessOfTopic"].ToString()
-                        //CONTINUE HERE
                     ,
-                        Affiliation = dr["Affiliation"].ToString()
+                        TimelinessOfTopic = dr["TimelinessOfTopic"].ToString()
                     ,
-                        Department = dr["Department"].ToString()
+                        SupportiveEvidence = dr["SupportiveEvidence"].ToString()
                     ,
-                        Address = dr["Address"].ToString()
+                        TechnicalQuality = dr["TechnicalQuality"].ToString()
                     ,
-                        City = dr["City"].ToString()
+                        ScopeOfCoverage = dr["ScopeOfCoverage"].ToString()
                     ,
-                        State = dr["State"].ToString()
+                        CitationOfPreviousWork = dr["CitationOfPreviousWork"].ToString()
                     ,
-                        ZipCode = dr["ZipCode"].ToString()
+                        Originality = dr["Originality"].ToString()
                     ,
-                        PhoneNumber = dr["PhoneNumber"].ToString()
-
-                    });
+                        ContentComments = dr["ContentComments"].ToString()
+                    ,
+                        OrganizationOfPaper = dr["OrganizationOfPaper"].ToString()
+                    ,
+                        ClarityOfMainMessage = dr["ClarityOfMainMessage"].ToString()
+                    ,
+                        Mechanics = dr["Mechanics"].ToString()
+                    ,
+                        WrittenDocumentComments = dr["WrittenDocumentComments"].ToString()
+                    ,
+                        SuitabilityForPresentation = dr["SuitabilityForPresentation"].ToString()
+                    ,
+                        PotentialInterestInTopic = dr["PotentialInterestInTopic"].ToString()
+                    ,
+                        PotentialForOralPresentationComments = dr["PotentialForOralPresentationComments"].ToString()
+                    ,
+                        OverallRating = dr["OverallRating"].ToString()
+                    ,
+                        OverallRatingComments = dr["OverallRatingComments"].ToString()
+                    ,
+                        ComfortLevelTopic = dr["ComfortLevelTopic"].ToString()
+                    ,
+                        ComfortLevelAcceptability = dr["ComfortLevelAcceptability"].ToString()
+                });
                 }
                 con.Close();
             }
@@ -243,6 +323,25 @@ namespace CPMS.Controllers
             }
         }
 
+        public IActionResult AddReviewData(ReviewModel review)
+        {
+            try
+            {
+                con.Open();
+                com.Connection = con;
+                com.CommandText = "INSERT INTO Review (AppropriatenessOfTopic, MiddleInitial, LastName, Affiliation, Department, Address, City, State, ZipCode, PhoneNumber, EmailAddress, Password) VALUES ('" + author.FirstName + "', '" + author.MiddleInitial + "', '" + author.LastName + "', '" + author.Affiliation + "', '" + author.Department + "', '" + author.Address + "', '" + author.City + "', '" + author.State + "', '" + author.ZipCode + "', '" + author.PhoneNumber + "', '" + author.EmailAddress + "','" + author.Password + "')";
+                com.ExecuteReader();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return View("Index");
+        }
+
+        //Boiler plate code 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
