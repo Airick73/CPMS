@@ -10,5 +10,9 @@ namespace CPMS.Models
         public string EmailAddress { get; set; }
 
         public string Password { get; set; }
+
+        public string userID { get; set; }
+
+        public bool userType { get; set; }
     }
 }

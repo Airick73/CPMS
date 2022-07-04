@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace CPMS.Controllers
 {
     public class LoginController : Controller
@@ -17,13 +18,14 @@ namespace CPMS.Controllers
 
        public IActionResult ProcessLogin(UserModel user)
         {
-            int userLoginType;
-            UsersDAO usersDAO = new UsersDAO();
-            userLoginType = usersDAO.FindUserByEmailAndPassword(user);
+            if (user.EmailAddress == "Admin" && user.Password == "adminpassword") { return RedirectToAction("Index", "Admin"); } //check if admin first
 
-            if (userLoginType == 1) { return View(); }
-            else if (userLoginType == 2) { return View(); }
-            else { return View(); }
+            UsersDAO usersDAO = new UsersDAO();
+            user = usersDAO.FindUserByEmailAndPassword(user);
+
+            if (user.userType == false && user.userID != null) { return RedirectToAction("Index", "Author", user); }
+            else if (user.userType == true && user.userID != null) { return RedirectToAction("Index", "Reviewer", user); }
+            else { return View("<h1>Invalid username or password.<h1/>"); }
 
         }
     }

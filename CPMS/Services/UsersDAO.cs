@@ -14,9 +14,8 @@ namespace CPMS.Services
     {
         string connectionString = CPMS.Properties.Resources.ConnectionString;
 
-        public int FindUserByEmailAndPassword(UserModel user)
+        public UserModel FindUserByEmailAndPassword(UserModel user)
         {
-            int userLogin = 0;
 
             string sqlAuthorStatement = "SELECT * FROM [CPMS].[dbo].[Author] WHERE EmailAddress = @username AND Password = @password";
             string sqlReviewerStatement = "SELECT * FROM [CPMS].[dbo].[Author] WHERE EmailAddress = @username AND Password = @password";
@@ -39,8 +38,10 @@ namespace CPMS.Services
                     SqlDataReader reader = authorCommand.ExecuteReader();
 
                     if(reader.HasRows){
-                        userLogin = 1; //here we have successfully found the author
-                    }
+                        reader.Read();
+                        user.userID = reader["AuthorID"].ToString();
+                        user.userType = false;
+                }
                 }
                 catch(Exception e)
                 {
@@ -51,10 +52,12 @@ namespace CPMS.Services
                 {
                     connection.Open();
                     SqlDataReader reader = reviewerCommand.ExecuteReader();
-
+ 
                     if (reader.HasRows) 
                     {
-                        userLogin = 2; //here we have successfully found the reivewer
+                        reader.Read();
+                        user.userID = reader["ReviewerID"].ToString();
+                        user.userType = true;
                     }
                 }
                 catch (Exception e)
@@ -62,7 +65,7 @@ namespace CPMS.Services
                     Console.WriteLine(e.Message);
                 }
 
-                return userLogin;
+                return user;
             }
 
         }
