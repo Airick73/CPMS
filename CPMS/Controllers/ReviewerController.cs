@@ -15,8 +15,7 @@ namespace CPMS.Controllers
         public IActionResult Index(UserModel user)
         {
             ViewBag.ReviewerID = user.userID;
-            ViewBag.Email = user.EmailAddress;
-            return View(user);
+            return View();
         }
 
         public IActionResult AddReviewData(ReviewModel review)
@@ -26,9 +25,7 @@ namespace CPMS.Controllers
                 con.Open();
                 com.Connection = con;
                 com.CommandText = "INSERT INTO Review " +
-                                    "(PaperID" +
-                                    "ReviewerID" +
-                                    "AppropriatenessOfTopic, " +
+                                    "(AppropriatenessOfTopic, " +
                                     "TimelinessOfTopic, " +
                                     "SupportiveEvidence, " +
                                     "TechnicalQuality, " +
@@ -49,9 +46,7 @@ namespace CPMS.Controllers
                                     "ComfortLevelAcceptability, " +
                                     "Complete) " +
                                     "VALUES " +
-                                    "('" + review.PaperID + "', " +
-                                    "'" + review.ReviewerID + "', " +
-                                    "'" + review.AppropriatenessOfTopic + "', " +
+                                    "('" + review.AppropriatenessOfTopic + "', " +
                                     "'" + review.TimelinessOfTopic + "', " +
                                     "'" + review.SupportiveEvidence + "', " +
                                     "'" + review.TechnicalQuality + "', " +

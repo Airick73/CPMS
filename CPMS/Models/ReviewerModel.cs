@@ -23,7 +23,7 @@ namespace CPMS.Models
         public bool AnalysisOfAlgorithms { get; set; }
         public bool Applications { get; set; }
         public bool Architecture { get; set; }
-        public bool ArtificalIntelligence { get; set; }
+        public bool ArtificialIntelligence { get; set; }
         public bool ComputerEngineering { get; set; }
         public bool Curriculum { get; set; }
         public bool DataStructures { get; set; }
@@ -44,7 +44,7 @@ namespace CPMS.Models
         public bool NonMajorCourses { get; set; }
         public bool ObjectOrientedIssues { get; set; }
         public bool OperatingSystems { get; set; }
-        public bool ParallelProcessing { get; set; }
+        public bool ParallelsProcessing { get; set; }
         public bool Pedagogy { get; set; }
         public bool ProgrammingLanguages { get; set; }
         public bool Research { get; set; }

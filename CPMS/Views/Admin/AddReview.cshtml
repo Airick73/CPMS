@@ -10,6 +10,16 @@
         <form asp-action="AddReviewData">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="PaperID" class="control-label"></label>
+                <input asp-for="PaperID" class="form-control" />
+                <span asp-validation-for="PaperID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReviewerID" class="control-label"></label>
+                <input asp-for="ReviewerID" class="form-control" />
+                <span asp-validation-for="ReviewerID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="AppropriatenessOfTopic" class="control-label"></label>
                 <input asp-for="AppropriatenessOfTopic" class="form-control" />
                 <span asp-validation-for="AppropriatenessOfTopic" class="text-danger"></span>

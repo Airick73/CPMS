@@ -307,3 +307,6 @@ C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\
 C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Shared\Author_Layout.cshtml.g.cs
 C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Shared\Login_Layout.cshtml.g.cs
 C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Shared\Reviewer_Layout.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\SignUp\RegisterAuthor.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\SignUp\RegisterReviewer.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\SignUp\Index.cshtml.g.cs

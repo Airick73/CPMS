@@ -11,6 +11,7 @@ namespace CPMS.Controllers
 {
     public class LoginController : Controller
     {
+        AddData addData = new AddData();
         public IActionResult Index()
         {
             return View();
@@ -28,5 +29,6 @@ namespace CPMS.Controllers
             else { return View("<h1>Invalid username or password.<h1/>"); }
 
         }
+
     }
 }
