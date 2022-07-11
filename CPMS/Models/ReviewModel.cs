@@ -3,8 +3,8 @@
     public class ReviewModel
     {
         public string ReviewID { get; set; }
-        public string PaperID { get; set; }
-        public string ReviewerID { get; set; }
+        public int PaperID { get; set; }
+        public int ReviewerID { get; set; }
         public string AppropriatenessOfTopic { get; set; }
         public string TimelinessOfTopic { get; set; }
         public string SupportiveEvidence { get; set; }

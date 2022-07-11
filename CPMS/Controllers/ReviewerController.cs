@@ -1,4 +1,5 @@
 ﻿using CPMS.Models;
+using CPMS.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,69 +13,39 @@ namespace CPMS.Controllers
         SqlCommand com = new SqlCommand();
         SqlDataReader dr;
         SqlConnection con = new SqlConnection();
-        public IActionResult Index(UserModel user)
+
+        ModifyData ModifyData = new ModifyData();
+        GetData requestData = new GetData();
+        List<ReviewModel> tempReviews = new List<ReviewModel>();
+        List<ReviewModel> reviews = new List<ReviewModel>();
+
+        public IActionResult Index()
         {
-            ViewBag.ReviewerID = user.userID;
-            return View();
+            tempReviews = requestData.FetchReviewData();
+
+            //before we return we need to edit the reviews list of models
+            foreach(ReviewModel review in tempReviews)
+            {
+                if (review.ReviewerID == UserModel.userID)
+                    reviews.Add(review);
+            } 
+
+            return View(reviews);
         }
 
-        public IActionResult AddReviewData(ReviewModel review)
+        public IActionResult openReview(string ReviewID, string ReviewerID)
         {
-            try
-            {
-                con.Open();
-                com.Connection = con;
-                com.CommandText = "INSERT INTO Review " +
-                                    "(AppropriatenessOfTopic, " +
-                                    "TimelinessOfTopic, " +
-                                    "SupportiveEvidence, " +
-                                    "TechnicalQuality, " +
-                                    "ScopeOfCoverage, " +
-                                    "CitationOfPreviousWork, " +
-                                    "Originality, " +
-                                    "ContentComments, " +
-                                    "OrganizationOfPaper, " +
-                                    "ClarityOfMainMessage, " +
-                                    "Mechanics, " +
-                                    "WrittenDocumentComments, " +
-                                    "SuitabilityForPresentation, " +
-                                    "PotentialInterestInTopic, " +
-                                    "PotentialForOralPresentationComments, " +
-                                    "OverallRating, " +
-                                    "OverallRatingComments, " +
-                                    "ComfortLevelTopic, " +
-                                    "ComfortLevelAcceptability, " +
-                                    "Complete) " +
-                                    "VALUES " +
-                                    "('" + review.AppropriatenessOfTopic + "', " +
-                                    "'" + review.TimelinessOfTopic + "', " +
-                                    "'" + review.SupportiveEvidence + "', " +
-                                    "'" + review.TechnicalQuality + "', " +
-                                    "'" + review.ScopeOfCoverage + "', " +
-                                    "'" + review.CitationOfPreviousWork + "', " +
-                                    "'" + review.Originality + "', " +
-                                    "'" + review.ContentComments + "', " +
-                                    "'" + review.OrganizationOfPaper + "', " +
-                                    "'" + review.ClarityOfMainMessage + "', " +
-                                    "'" + review.Mechanics + "'," +
-                                    "'" + review.WrittenDocumentComments + "'," +
-                                    "'" + review.SuitabilityForPresentation + "'," +
-                                    "'" + review.PotentialInterestInTopic + "'," +
-                                    "'" + review.PotentialForOralPresentationComments + "'," +
-                                    "'" + review.OverallRating + "'," +
-                                    "'" + review.OverallRatingComments + "'," +
-                                    "'" + review.ComfortLevelTopic + "'," +
-                                    "'" + review.ComfortLevelAcceptability + "'," +
-                                    "'" + review.Complete + "')";
-                com.ExecuteReader();
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return View("Index");
+            ViewBag.ReviewID = ReviewID;
+            return View();   
         }
+
+        public IActionResult submitReview(ReviewModel review)
+        {
+            ModifyData.ModifyReviewData(review);
+            return RedirectToAction("Index");
+            
+
+        }
+
     }
 }

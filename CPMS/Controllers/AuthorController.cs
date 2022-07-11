@@ -23,10 +23,10 @@ namespace CPMS.Controllers
         }
 
         //Index page of author
-        public IActionResult Index(UserModel user)
+        public IActionResult Index()
         {
-            ViewBag.AuthorID = user.userID;
-            ViewBag.Email = user.EmailAddress;
+            ViewBag.AuthorID = UserModel.userID;
+            ViewBag.Email = UserModel.EmailAddress;
             return View();
         }
 
@@ -67,7 +67,7 @@ namespace CPMS.Controllers
                                     "NonMajorCourses, " +
                                     "ObjectOrientedIssues, " +
                                     "OperatingSystems, " +
-                                    "ParallelsProcessing, " +
+                                    "ParallelProcessing, " +
                                     "Pedagogy, " +
                                     "ProgrammingLanguages, " +
                                     "Research, " +
@@ -109,7 +109,7 @@ namespace CPMS.Controllers
                                     "'" + paper.NonMajorCourses + "', " +
                                     "'" + paper.ObjectOrientedIssues + "'," +
                                     "'" + paper.OperatingSystems + "'," +
-                                    "'" + paper.ParallelsProcessing + "'," +
+                                    "'" + paper.ParallelProcessing + "'," +
                                     "'" + paper.Pedagogy + "'," +
                                     "'" + paper.ProgrammingLanguages + "'," +
                                     "'" + paper.Research + "'," +

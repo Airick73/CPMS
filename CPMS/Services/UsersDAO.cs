@@ -14,11 +14,11 @@ namespace CPMS.Services
     {
         string connectionString = CPMS.Properties.Resources.ConnectionString;
 
-        public UserModel FindUserByEmailAndPassword(UserModel user)
+        public void FindUserByEmailAndPassword()
         {
 
             string sqlAuthorStatement = "SELECT * FROM [CPMS].[dbo].[Author] WHERE EmailAddress = @username AND Password = @password";
-            string sqlReviewerStatement = "SELECT * FROM [CPMS].[dbo].[Author] WHERE EmailAddress = @username AND Password = @password";
+            string sqlReviewerStatement = "SELECT * FROM [CPMS].[dbo].[Reviewer] WHERE EmailAddress = @username AND Password = @password";
 
             using(SqlConnection connection =new SqlConnection(connectionString))
             {
@@ -26,12 +26,14 @@ namespace CPMS.Services
                 SqlCommand reviewerCommand = new SqlCommand(sqlReviewerStatement, connection);
 
 
-                authorCommand.Parameters.Add("@username", System.Data.SqlDbType.NVarChar, 100).Value = user.EmailAddress;
-                authorCommand.Parameters.Add("@password", System.Data.SqlDbType.NVarChar, 50).Value = user.Password;
+                authorCommand.Parameters.Add("@username", System.Data.SqlDbType.NVarChar, 100).Value = UserModel.EmailAddress;
+                authorCommand.Parameters.Add("@password", System.Data.SqlDbType.NVarChar, 50).Value = UserModel.Password;
 
-                reviewerCommand.Parameters.Add("@username", System.Data.SqlDbType.NVarChar, 100).Value = user.EmailAddress;
-                reviewerCommand.Parameters.Add("@password", System.Data.SqlDbType.NVarChar, 50).Value = user.Password;
+                reviewerCommand.Parameters.Add("@username", System.Data.SqlDbType.NVarChar, 100).Value = UserModel.EmailAddress;
+                reviewerCommand.Parameters.Add("@password", System.Data.SqlDbType.NVarChar, 50).Value = UserModel.Password;
 
+                UserModel.valid = false;
+                
                 try
                 {
                     connection.Open();
@@ -39,9 +41,12 @@ namespace CPMS.Services
 
                     if(reader.HasRows){
                         reader.Read();
-                        user.userID = reader["AuthorID"].ToString();
-                        user.userType = false;
-                }
+                        UserModel.userID = Int32.Parse(reader["AuthorID"].ToString());
+                        UserModel.userType = false;
+                        UserModel.valid = true; 
+                    }
+                    connection.Close();
+
                 }
                 catch(Exception e)
                 {
@@ -56,16 +61,17 @@ namespace CPMS.Services
                     if (reader.HasRows) 
                     {
                         reader.Read();
-                        user.userID = reader["ReviewerID"].ToString();
-                        user.userType = true;
+                        UserModel.userID = Int32.Parse(reader["ReviewerID"].ToString());
+                        UserModel.userType = true;
+                        UserModel.valid = true;
                     }
+                    connection.Close();
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
 
-                return user;
             }
 
         }

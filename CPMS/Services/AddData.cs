@@ -29,50 +29,11 @@ namespace CPMS.Services
                 com.Connection = con;
                 com.CommandText = "INSERT INTO Review " +
                                     "(PaperID, " +
-                                    "ReviewerID, " +
-                                    "AppropriatenessOfTopic, " +
-                                    "TimelinessOfTopic, " +
-                                    "SupportiveEvidence, " +
-                                    "TechnicalQuality, " +
-                                    "ScopeOfCoverage, " +
-                                    "CitationOfPreviousWork, " +
-                                    "Originality, " +
-                                    "ContentComments, " +
-                                    "OrganizationOfPaper, " +
-                                    "ClarityOfMainMessage, " +
-                                    "Mechanics, " +
-                                    "WrittenDocumentComments, " +
-                                    "SuitabilityForPresentation, " +
-                                    "PotentialInterestInTopic, " +
-                                    "PotentialForOralPresentationComments, " +
-                                    "OverallRating, " +
-                                    "OverallRatingComments, " +
-                                    "ComfortLevelTopic, " +
-                                    "ComfortLevelAcceptability, " +
-                                    "Complete) " +
+                                    "ReviewerID) " +
                                     "VALUES " +
-                                    "('" + review.PaperID + "', " +
-                                    "'" + review.ReviewerID + "', " +
-                                    "'" + review.AppropriatenessOfTopic + "', " +
-                                    "'" + review.TimelinessOfTopic + "', " +
-                                    "'" + review.SupportiveEvidence + "', " +
-                                    "'" + review.TechnicalQuality + "', " +
-                                    "'" + review.ScopeOfCoverage + "', " +
-                                    "'" + review.CitationOfPreviousWork + "', " +
-                                    "'" + review.Originality + "', " +
-                                    "'" + review.ContentComments + "', " +
-                                    "'" + review.OrganizationOfPaper + "', " +
-                                    "'" + review.ClarityOfMainMessage + "', " +
-                                    "'" + review.Mechanics + "'," +
-                                    "'" + review.WrittenDocumentComments + "'," +
-                                    "'" + review.SuitabilityForPresentation + "'," +
-                                    "'" + review.PotentialInterestInTopic + "'," +
-                                    "'" + review.PotentialForOralPresentationComments + "'," +
-                                    "'" + review.OverallRating + "'," +
-                                    "'" + review.OverallRatingComments + "'," +
-                                    "'" + review.ComfortLevelTopic + "'," +
-                                    "'" + review.ComfortLevelAcceptability + "'," +
-                                    "'" + review.Complete + "')";
+                                    "(" + review.PaperID + ", " +
+                                          review.ReviewerID + ") ";
+
                 com.ExecuteReader();
                 con.Close();
             }
@@ -126,7 +87,7 @@ namespace CPMS.Services
                                     "NonMajorCourses, " +
                                     "ObjectOrientedIssues, " +
                                     "OperatingSystems, " +
-                                    "ParallelsProcessing, " +
+                                    "ParallelProcessing, " +
                                     "Pedagogy, " +
                                     "ProgrammingLanguages, " +
                                     "Research, " +
@@ -158,7 +119,7 @@ namespace CPMS.Services
                                     "'" + reviewer.Curriculum + "'," +
                                     "'" + reviewer.DataStructures + "'," +
                                     "'" + reviewer.Databases + "'," +
-                                    "'" + reviewer.DistanceLearning + "'," +
+                                    "'" + reviewer.DistanceLearning + "'," +//--------------------------
                                     "'" + reviewer.DistributedSystems + "'," +
                                     "'" + reviewer.EthicalSocietalIssues + "'," +
                                     "'" + reviewer.FirstYearComputing + "'," +
@@ -174,7 +135,7 @@ namespace CPMS.Services
                                     "'" + reviewer.NonMajorCourses + "', " +
                                     "'" + reviewer.ObjectOrientedIssues + "'," +
                                     "'" + reviewer.OperatingSystems + "'," +
-                                    "'" + reviewer.ParallelsProcessing + "'," +
+                                    "'" + reviewer.ParallelProcessing + "'," +//------------------
                                     "'" + reviewer.Pedagogy + "'," +
                                     "'" + reviewer.ProgrammingLanguages + "'," +
                                     "'" + reviewer.Research + "'," +

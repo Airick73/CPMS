@@ -5,14 +5,16 @@ using System.Threading.Tasks;
 
 namespace CPMS.Models
 {
-    public class UserModel
+    public static class UserModel
     {
-        public string EmailAddress { get; set; }
+        public static string EmailAddress { get; set; }
 
-        public string Password { get; set; }
+        public static string Password { get; set; }
 
-        public string userID { get; set; }
+        public static int userID { get; set; }
 
-        public bool userType { get; set; }
+        public static bool userType { get; set; }
+
+        public static bool valid { get; set; }
     }
 }
