@@ -6,24 +6,24 @@
 
 <div class="full-screen-container">
     <div class="login-container">
-        <h4>Login</h4>
-        <hr />
+        <h1 class="login-title">CPMS</h1>
         <form asp-action="ProcessLogin">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="EmailAddress" class="control-label"></label>
-                <input asp-for="EmailAddress" class="form-control" />
+                <input asp-for="EmailAddress" class="login-input" placeholder="EmailAddress"/>
                 <span asp-validation-for="EmailAddress" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
+                <input asp-for="Password" class="login-input" placeholder="Password" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
+            <br />
+            <div >
+                <input style="padding:0;"type="submit" value="Login" class="login-btn" />
             </div>
         </form>
+        <br />
         <a asp-action="RetrievePassword">Forgot Password</a>
         <a asp-action="Index" asp-controller="SignUp">Sign Up</a>
     </div>

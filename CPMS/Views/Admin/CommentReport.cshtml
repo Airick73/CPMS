@@ -18,10 +18,12 @@
 
 <h1>CommentsReport</h1>
 
-<a asp-action="ScoreReport" asp-controller="Admin"><div class="button author-sign-up-button">Score report</div></a>
-<a asp-action="AuthorReport" asp-controller="Admin"><div class="button reviewer-sign-up-button">Author report</div></a>
-<a asp-action="ReviewerReport" asp-controller="Admin"><div class="button author-sign-up-button">Reviewer report</div></a>
-<a asp-action="CommentReport" asp-controller="Admin"><div class="button reviewer-sign-up-button">Comment report</div></a>
+<div class="report-buttons">
+    <a asp-action="ScoreReport" asp-controller="Admin"><div class="button author-sign-up-button">Score report</div></a>
+    <a asp-action="AuthorReport" asp-controller="Admin"><div class="button reviewer-sign-up-button">Author report</div></a>
+    <a asp-action="ReviewerReport" asp-controller="Admin"><div class="button author-sign-up-button">Reviewer report</div></a>
+    <a asp-action="CommentReport" asp-controller="Admin"><div class="button reviewer-sign-up-button">Comment report</div></a>
+</div>
 
 <div class="table-container">
     <table class="table">

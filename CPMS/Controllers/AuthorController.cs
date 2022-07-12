@@ -44,7 +44,7 @@ namespace CPMS.Controllers
         {
             string paperName = paper.PaperPdf.FileName;
             string uniquePaperName = Guid.NewGuid().ToString() + "_" + paperName;
-            string fileName = $"{hostingEnvironment.WebRootPath}\\static\\{paper.PaperPdf.FileName}";
+            string fileName = $"{hostingEnvironment.WebRootPath}\\static\\{uniquePaperName}";
             using(FileStream fileStream = System.IO.File.Create(fileName))
             {
                 paper.PaperPdf.CopyTo(fileStream);
