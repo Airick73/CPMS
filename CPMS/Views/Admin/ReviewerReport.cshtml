@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    ViewData["Title"] = "Reviewer Report";
+    string[] TableHeaders = new string[] {
+        "FirstName"
+        ,"MiddleInitial"
+        ,"LastName"
+        ,"Affiliation"
+        ,"Department"
+        ,"Address"
+        ,"City"
+        ,"State"
+        ,"ZipCode"
+        ,"PhoneNumber"
+        ,"EmailAddress"
+    };
+}
+
+
+<h1>@ViewData["Title"]</h1>
+
+<a asp-action="ScoreReport" asp-controller="Admin"><div class="button author-sign-up-button">Score report</div></a>
+<a asp-action="AuthorReport" asp-controller="Admin"><div class="button reviewer-sign-up-button">Author report</div></a>
+<a asp-action="ReviewerReport" asp-controller="Admin"><div class="button author-sign-up-button">Reviewer report</div></a>
+<a asp-action="CommentReport" asp-controller="Admin"><div class="button reviewer-sign-up-button">Comment report</div></a>
+
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                @{
+                    foreach (var head in TableHeaders)
+                    {
+                        <th>
+                            @head
+                        </th>
+                    }
+                }
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    foreach (var Data in Model)
+                    {
+                        <tr>
+                            <td>@Data.FirstName</td>
+                            <td>@Data.MiddleInitial</td>
+                            <td>@Data.LastName</td>
+                            <td>@Data.Affiliation</td>
+                            <td>@Data.Department</td>
+                            <td>@Data.Address</td>
+                            <td>@Data.City</td>
+                            <td>@Data.State</td>
+                            <td>@Data.ZipCode</td>
+                            <td>@Data.PhoneNumber</td>
+                            <td>@Data.EmailAddress</td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>

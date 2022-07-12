@@ -144,7 +144,8 @@ namespace CPMS.Services
                                   "[City]," +
                                   "[State]," +
                                   "[ZipCode]," +
-                                  "[PhoneNumber] " +
+                                  "[PhoneNumber], " +
+                                  "[EmailAddress]" +
                                   "FROM " +
                                   "[CPMS].[dbo].[Author]";
                 dr = com.ExecuteReader();
@@ -174,6 +175,8 @@ namespace CPMS.Services
                         ZipCode = dr["ZipCode"].ToString()
                     ,
                         PhoneNumber = dr["PhoneNumber"].ToString()
+                    ,
+                        EmailAddress = dr["EmailAddress"].ToString()
 
                     });
                 }
@@ -185,6 +188,200 @@ namespace CPMS.Services
             }
 
             return authors;
+        }
+
+        //function to FetchReviewerData called with TableMaintenance function to display table for authors
+        //lots of boiler plate code to open connection...set connection to command...execute sql command
+        public List<ReviewerModel> FetchReviewerData()
+        {
+            List<ReviewerModel> reviewers = new List<ReviewerModel>();
+            try
+            {
+                con.Open();
+                com.Connection = con;
+                com.CommandText = "SELECT * FROM [CPMS].[dbo].[Reviewer]";
+                dr = com.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    reviewers.Add(new ReviewerModel()
+                    {
+                        ReviewerID = dr["ReviewerID"].ToString()
+                    ,
+                        FirstName = dr["FirstName"].ToString()
+                    ,
+                        MiddleInitial = dr["MiddleInitial"].ToString()
+                    ,
+                        LastName = dr["LastName"].ToString()
+                    ,
+                        Affiliation = dr["Affiliation"].ToString()
+                    ,
+                        Department = dr["Department"].ToString()
+                    ,
+                        Address = dr["Address"].ToString()
+                    ,
+                        City = dr["City"].ToString()
+                    ,
+                        State = dr["State"].ToString()
+                    ,
+                        ZipCode = dr["ZipCode"].ToString()
+                    ,
+                        PhoneNumber = dr["PhoneNumber"].ToString()
+                    ,
+                        EmailAddress = dr["EmailAddress"].ToString()
+                    ,
+                        AnalysisOfAlgorithms = dr["AnalysisOfAlgorithms"].ToString()
+                    ,
+                        Applications = dr["Applications"].ToString()
+                    ,
+                        Architecture = dr["Architecture"].ToString()
+                    ,
+                        ArtificialIntelligence = dr["ArtificialIntelligence"].ToString()
+                    ,
+                        ComputerEngineering = dr["ComputerEngineering"].ToString()
+                    ,
+                        Curriculum = dr["Curriculum"].ToString()
+                    ,
+                        DataStructures = dr["DataStructures"].ToString()
+                    ,
+                        Databases = dr["Databases"].ToString()
+                    ,
+                        DistanceLearning = dr["DistanceLearning"].ToString()
+                    ,
+                        DistributedSystems = dr["DistributedSystems"].ToString()
+                    ,
+                        EthicalSocietalIssues = dr["EthicalSocietalIssues"].ToString()
+                    ,
+                        FirstYearComputing = dr["FirstYearComputing"].ToString()
+                    ,
+                        GenderIssues = dr["GenderIssues"].ToString()
+                    ,
+                        GrantWriting = dr["GrantWriting"].ToString()
+                    ,
+                        GraphicsImageProcessing = dr["GraphicsImageProcessing"].ToString()
+                    ,
+                        HumanComputerInteraction = dr["HumanComputerInteraction"].ToString()
+                    ,
+                        LaboratoryEnvironments = dr["LaboratoryEnvironments"].ToString()
+                    ,
+                        Literacy = dr["Literacy"].ToString()
+                    ,
+                        MathematicsInComputing = dr["MathematicsInComputing"].ToString()
+                    ,
+                        Multimedia = dr["Multimedia"].ToString()
+                    ,
+                        NetworkingDataCommunications = dr["NetworkingDataCommunications"].ToString()
+                    ,
+                        NonMajorCourses = dr["NonMajorCourses"].ToString()
+                    ,
+                        ObjectOrientedIssues = dr["ObjectOrientedIssues"].ToString()
+                    ,
+                        OperatingSystems = dr["OperatingSystems"].ToString()
+                    ,
+                        ParallelProcessing = dr["ParallelProcessing"].ToString()
+                    ,
+                        Pedagogy = dr["Pedagogy"].ToString()
+                    ,
+                        ProgrammingLanguages = dr["ProgrammingLanguages"].ToString()
+                    ,
+                        Research = dr["Research"].ToString()
+                    ,
+                        Security = dr["Security"].ToString()
+                    ,
+                        SoftwareEngineering = dr["SoftwareEngineering"].ToString()
+                    ,
+                        SystemsAnalysisAndDesign = dr["SystemsAnalysisAndDesign"].ToString()
+                    ,
+                        UsingTechnologyInTheClassroom = dr["UsingTechnologyInTheClassroom"].ToString()
+                    ,
+                        WebAndInternetProgramming = dr["WebAndInternetProgramming"].ToString()
+                    ,
+                        Other = dr["Other"].ToString()
+                    ,
+                        OtherDescription = dr["OtherDescription"].ToString()
+
+                    });
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return reviewers;
+        }
+
+
+        //function to FetchReviewerData called with TableMaintenance function to display table for authors
+        //lots of boiler plate code to open connection...set connection to command...execute sql command
+        public List<PaperModel> FetchPaperData()
+        {
+            List<PaperModel> papers = new List<PaperModel>();
+            try
+            {
+                con.Open();
+                com.Connection = con;
+                com.CommandText = "SELECT * FROM [CPMS].[dbo].[Paper]";
+                dr = com.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    papers.Add(new PaperModel()
+                    {
+                        PaperID = dr["PaperID"].ToString()
+                        , AuthorID  = dr["AuthorID"].ToString()
+                        , FilenameOriginal = dr["FilenameOriginal"].ToString()
+                        , Filename = dr["Filename"].ToString()
+                        , Title  = dr["Title"].ToString()
+                        , Certification  = dr["Certification"].ToString()
+                        , NotesToReviewers  = dr["NotesToReviewers"].ToString()
+                        , AnalysisOfAlgorithms  = dr["AnalysisOfAlgorithms"].ToString()
+                        , Applications  = dr["Applications"].ToString()
+                        , Architecture  = dr["Architecture"].ToString()
+                        , ArtificialIntelligence  = dr["ArtificialIntelligence"].ToString()
+                        , ComputerEngineering  = dr["ComputerEngineering"].ToString()
+                        , Curriculum  = dr["Curriculum"].ToString()
+                        , DataStructures  = dr["DataStructures"].ToString()
+                        , Databases  = dr["Databases"].ToString()
+                        , DistanceLearning  = dr["DistanceLearning"].ToString()
+                        , DistributedSystems  = dr["DistributedSystems"].ToString()
+                        , EthicalSocietalIssues  = dr["EthicalSocietalIssues"].ToString()
+                        , FirstYearComputing  = dr["FirstYearComputing"].ToString()
+                        , GenderIssues  = dr["GenderIssues"].ToString()
+                        , GrantWriting  = dr["GrantWriting"].ToString()
+                        , GraphicsImageProcessing  = dr["GraphicsImageProcessing"].ToString()
+                        , HumanComputerInteraction  = dr["HumanComputerInteraction"].ToString()
+                        , LaboratoryEnvironments  = dr["LaboratoryEnvironments"].ToString()
+                        , Literacy  = dr["Literacy"].ToString()
+                        , MathematicsInComputing  = dr["MathematicsInComputing"].ToString()
+                        , Multimedia  = dr["Multimedia"].ToString()
+                        , NetworkingDataCommunications  = dr["NetworkingDataCommunications"].ToString()
+                        , NonMajorCourses  = dr["NonMajorCourses"].ToString()
+                        , ObjectOrientedIssues  = dr["ObjectOrientedIssues"].ToString()
+                        , OperatingSystems  = dr["OperatingSystems"].ToString()
+                        , ParallelProcessing  = dr["ParallelProcessing"].ToString()
+                        , Pedagogy  = dr["Pedagogy"].ToString()
+                        , ProgrammingLanguages  = dr["ProgrammingLanguages"].ToString()
+                        , Research  = dr["Research"].ToString()
+                        , Security  = dr["Security"].ToString()
+                        , SoftwareEngineering  = dr["SoftwareEngineering"].ToString()
+                        , SystemsAnalysisAndDesign  = dr["SystemsAnalysisAndDesign"].ToString()
+                        , UsingTechnologyInTheClassroom  = dr["UsingTechnologyInTheClassroom"].ToString()
+                        , WebAndInternetProgramming  = dr["WebAndInternetProgramming"].ToString()
+                        , Other  = dr["Other"].ToString()
+                        , OtherDescription = dr["OtherDescription"].ToString()
+
+                    });
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return papers;
         }
 
 
@@ -254,5 +451,59 @@ namespace CPMS.Services
 
             return reports;
         }//end FetchReportData function
+
+
+        public bool FetchEnableReviewers()
+        {
+            bool enabled = false;
+            try
+            {
+                con.Open();
+                com.Connection = con;
+                com.CommandText = "Select * From CPMS.dbo.Defaults";
+                dr = com.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    enabled = Boolean.Parse(dr["EnabledReviewers"].ToString());
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return enabled;
+        }
+
+        public bool FetchEnableAuthors()
+        {
+            bool enabled = false;
+            try
+            {
+                con.Open();
+                com.Connection = con;
+                com.CommandText = "Select * From CPMS.dbo.Defaults";
+                dr = com.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    enabled = Boolean.Parse(dr["EnabledAuthors"].ToString());
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return enabled;
+        }
+
+
+
+
+
     }//end class getData
 }//end namespace

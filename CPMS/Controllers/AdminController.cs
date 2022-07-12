@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using CPMS.Models;
+using CPMS.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using CPMS.Models;
-using CPMS.Services;
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 namespace CPMS.Controllers
 {
     public class AdminController : Controller
     {
-        SqlCommand com = new SqlCommand(); 
-        SqlDataReader dr; 
+        SqlCommand com = new SqlCommand();
+        SqlDataReader dr;
         SqlConnection con = new SqlConnection();
-        List<AuthorModel> authors = new List<AuthorModel>();
-        List<ReviewModel> reviews = new List<ReviewModel>();
+
         GetData requestData = new GetData();
         AddData AddData = new AddData();
         ModifyData ModifyData = new ModifyData();
@@ -32,9 +31,21 @@ namespace CPMS.Controllers
             return View();
         }
 
+        public IActionResult EnableDisableReviewerAuthor()
+        {
+            return View();
+        }
+
+        public IActionResult SetDefaultTable(DefaultModel model)
+        {
+            ModifyData.SetDefaultTable(model);
+            return View("EnableDisableReviewerAuthor");
+        }
+
         //Author table page
         public IActionResult TableMaintenance()
         {
+            List<AuthorModel> authors = new List<AuthorModel>();
             authors = requestData.FetchAuthorData();
             return View(authors);
         }
@@ -42,6 +53,7 @@ namespace CPMS.Controllers
         //Review table page
         public IActionResult BridgeTableMaintenance()
         {
+            List<ReviewModel> reviews = new List<ReviewModel>();
             reviews = requestData.FetchReviewData();
             return View(reviews);
         }
@@ -49,14 +61,85 @@ namespace CPMS.Controllers
         //Report page
         public IActionResult Report()
         {
+            return View();
+        }
+
+        //Report page
+        public IActionResult ScoreReport()
+        {
             List<ReportModel> reports = new List<ReportModel>();
-            reports = requestData.FetchReportData(); 
+            reports = requestData.FetchReportData();
             return View(reports);
+        }
+
+        public IActionResult AuthorReport()
+        {
+            List<AuthorModel> authors = new List<AuthorModel>();
+            authors = requestData.FetchAuthorData();
+            return View(authors);
+        }
+        public IActionResult ReviewerReport()
+        {
+            List<ReviewerModel> reviewers = new List<ReviewerModel>();
+            reviewers = requestData.FetchReviewerData();
+            return View(reviewers);
+        }
+
+        public IActionResult CommentReport()
+        {
+            //list of reviewers
+            List<ReviewerModel> reviewers = new List<ReviewerModel>();
+            reviewers = requestData.FetchReviewerData();
+
+            //list of reviews 
+            List<ReviewModel> reviews = new List<ReviewModel>();
+            reviews = requestData.FetchReviewData();
+
+            //list of papers
+            List<PaperModel> papers = new List<PaperModel>();
+            papers = requestData.FetchPaperData();
+
+            //make new list of comments matching reviewers to their comments
+            List<CommentModel> comments = new List<CommentModel>();
+            foreach(ReviewerModel reviewerObj in reviewers)
+            {
+                foreach(ReviewModel reviewObj in reviews)
+                {
+                    foreach(PaperModel paperObj in papers)
+                    {
+                        if (Int32.Parse(reviewerObj.ReviewerID) == reviewObj.ReviewerID  && reviewObj.PaperID == Int32.Parse(paperObj.PaperID))
+                        {
+                            comments.Add(new CommentModel()
+                            {
+                                FirstName = reviewerObj.FirstName,
+                                MiddleInitial = reviewerObj.MiddleInitial,
+                                LastName = reviewerObj.LastName,
+                                EmailAddress = reviewerObj.EmailAddress,
+                                FileName = paperObj.Filename,
+                                Title = paperObj.Title,
+                                ContentComments = reviewObj.ContentComments,
+                                WrittenDocumentComments = reviewObj.WrittenDocumentComments,
+                                PotentialForOralPresentationComments = reviewObj.PotentialForOralPresentationComments,
+                                OverallRatingComments = reviewObj.OverallRatingComments
+                            });
+                        }
+                    }
+                }
+            }
+           
+            return View(comments);
         }
 
         //Add review page
         public IActionResult AddReview()
         {
+            List<PaperModel> papers = new List<PaperModel>();
+            List<ReviewerModel> reviewers = new List<ReviewerModel>();
+            papers = requestData.FetchPaperData();
+            reviewers = requestData.FetchReviewerData();
+
+            ViewBag.reviewers = reviewers;
+            ViewBag.papers = papers;
             return View();
         }
 
@@ -87,16 +170,16 @@ namespace CPMS.Controllers
             {
                 con.Open();
                 com.Connection = con;
-                com.CommandText = "DELETE FROM Author WHERE AuthorID='"+ AuthID + "'";
+                com.CommandText = "DELETE FROM Author WHERE AuthorID='" + AuthID + "'";
                 com.ExecuteReader();
                 con.Close();
-                
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            
+
             return View("Index"); //After delete return to home page
         }
 
@@ -124,7 +207,7 @@ namespace CPMS.Controllers
 
         public IActionResult ModifyAuthorData(AuthorModel author)
         {
-            ModifyData.ModifyAuthorData(author);   
+            ModifyData.ModifyAuthorData(author);
             return View("Index");
         }
 

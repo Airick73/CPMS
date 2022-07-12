@@ -1,0 +1,110 @@
+﻿@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    ViewData["Title"] = "ScoreReport";
+    string[] TableHeaders = new string[] {
+         "Title"
+        ,"AppropriatenessOfTopic"
+        ,"TimelinessOfTopic"
+        ,"SupportiveEvidence"
+        ,"TechnicalQuality"
+        ,"ScopeOfCoverage"
+        ,"CitationOfPreviousWork"
+        ,"Originality"
+        ,"OrganizationOfPaper"
+        ,"ClarityOfMainMessage"
+        ,"Mechanics"
+        ,"SuitabilityForPresentation"
+        ,"PotentialInterestInTopic"
+        ,"OverallRating"
+        ,"FileName"
+        ,"WeightedScore"
+        };
+}
+
+
+<h1>@ViewData["Title"]</h1>
+
+<a asp-action="ScoreReport" asp-controller="Admin"><div class="button author-sign-up-button">Score report</div></a>
+<a asp-action="AuthorReport" asp-controller="Admin"><div class="button reviewer-sign-up-button">Author report</div></a>
+<a asp-action="ReviewerReport" asp-controller="Admin"><div class="button author-sign-up-button">Reviewer report</div></a>
+<a asp-action="CommentReport" asp-controller="Admin"><div class="button reviewer-sign-up-button">Comment report</div></a>
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                @{
+                    foreach (var head in TableHeaders)
+                    {
+                            <th>
+                                @head
+                            </th>
+                    }
+                }
+            </tr>
+        </thead>
+
+        <tbody>
+            @{
+                if (Model != null)
+                {
+                    foreach (var Data in Model)
+                    {
+                        float avg_score_AppropriatnessOfTopic = @Data.total_score_AppropriatnessOfTopic / @Data.NumReviews;
+                        float avg_score_TimelinessOfTopic = Data.total_score_TimelinessOfTopic / @Data.NumReviews;
+                        float avg_score_SupportiveEvidence = Data.total_score_SupportiveEvidence / @Data.NumReviews;
+                        float avg_score_TechnicalQuality = Data.total_score_TechnicalQuality / @Data.NumReviews;
+                        float avg_score_ScopeOfCoverage = Data.total_score_ScopeOfCoverage / @Data.NumReviews;
+                        float avg_score_CitationOfPreviousWork = Data.total_score_CitationOfPreviousWork / @Data.NumReviews;
+                        float avg_score_Originality = Data.total_score_Originality / @Data.NumReviews;
+                        float avg_score_OrganizationOfPaper = Data.total_score_OrganizationOfPaper / @Data.NumReviews;       
+                        float avg_score_ClarityOfMainMessage = Data.total_score_ClarityOfMainMessage / @Data.NumReviews;
+                        float avg_score_Mechanics = Data.total_score_Mechanics / @Data.NumReviews;
+                        float avg_score_SuitabilityForPresentation = Data.total_score_SuitabilityForPresentation / @Data.NumReviews;                   
+                        float avg_score_PotentialInterestInTopic = Data.total_score_PotentialInterestInTopic / @Data.NumReviews;
+                        float avg_score_OverallRating = Data.total_score_OverallRating / @Data.NumReviews;
+
+                        float sumTopics = avg_score_AppropriatnessOfTopic + 
+                        avg_score_TimelinessOfTopic + 
+                        avg_score_SupportiveEvidence + 
+                        avg_score_TechnicalQuality + 
+                        avg_score_ScopeOfCoverage + 
+                        avg_score_CitationOfPreviousWork + 
+                        avg_score_Originality + 
+                        avg_score_OrganizationOfPaper + 
+                        avg_score_ClarityOfMainMessage + 
+                        avg_score_Mechanics + 
+                        avg_score_SuitabilityForPresentation + 
+                        avg_score_PotentialInterestInTopic;
+
+                        float weighted_score = ( 0.5f * (sumTopics / 12)) + (avg_score_OverallRating *  0.5f);
+
+
+                        string filename = @Data.Title + ".pdf";
+                        <tr>
+                            <td>@Data.Title</td>
+                            <td>@avg_score_AppropriatnessOfTopic</td>
+                            <td>@avg_score_TimelinessOfTopic</td>
+                            <td>@avg_score_SupportiveEvidence</td>
+                            <td>@avg_score_TechnicalQuality</td>
+                            <td>@avg_score_ScopeOfCoverage</td>
+                            <td>@avg_score_CitationOfPreviousWork</td>
+                            <td>@avg_score_Originality</td>
+                            <td>@avg_score_OrganizationOfPaper</td>           
+                            <td>@avg_score_ClarityOfMainMessage</td>
+                            <td>@avg_score_Mechanics</td>
+                            <td>@avg_score_SuitabilityForPresentation</td>                      
+                            <td>@avg_score_PotentialInterestInTopic</td>
+                            <td>@avg_score_OverallRating</td>                       
+                            <td>@filename</td>
+                            <td>@weighted_score.ToString("0.00")</td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+                

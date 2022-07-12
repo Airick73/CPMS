@@ -1,29 +1,28 @@
-﻿@{
-    @model CPMS.Models.PaperModel
+﻿@model CPMS.Models.PaperModel
+@{
     Layout = "~/Views/Shared/Author_Layout.cshtml";
 }
+
 <br />
 <br />
 <br />
 <br />
-<h1>@ViewBag.Email</h1>
-<h1>@ViewBag.AuthorID</h1>
-<h1>Welcome Author</h1>
+
 <h4>Submit a paper</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AddPaperData">
+        <form asp-action="Index" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group hide-me">
                 <label asp-for="AuthorID" class="control-label"></label>
-                <input asp-for="AuthorID" class="form-control" value="@ViewBag.AuthorID"/>
+                <input asp-for="AuthorID" class="form-control" value="@UserModel.userID"/>
                 <span asp-validation-for="AuthorID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Filename" class="control-label"></label>
-                <input asp-for="Filename" class="form-control" />
-                <span asp-validation-for="Filename" class="text-danger"></span>
+                <label asp-for="PaperPdf" class="control-label"></label>
+                <input asp-for="PaperPdf" class="form-control" type="file" />
+                <span asp-validation-for="PaperPdf" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>

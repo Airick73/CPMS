@@ -78,12 +78,18 @@ nav {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    width: 100%;
 }
 
 .navbar-li {
     float: left;
     padding: 26px 16px;
     text-align: center;
+}
+
+.logout {
+    right: 30px;
+    position: absolute;
 }
 
 .navbar-li a {

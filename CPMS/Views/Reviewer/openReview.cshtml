@@ -11,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="submitReview">
+        <form asp-controller="Reviewer" asp-action="submitReview">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group hide-me">
                 <label asp-for="ReviewID" class="control-label"></label>
@@ -118,15 +118,15 @@
                 <input asp-for="Complete" class="form-control" />
                 <span asp-validation-for="Complete" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Submit review" class="btn btn-primary" />
-            </div>
+            <input type="submit" value="Save" class="btn btn-primary" />
+            
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="submitReview">Back to List</a>
+
 </div>
 
 @section Scripts {

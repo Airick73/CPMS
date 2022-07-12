@@ -301,7 +301,6 @@ C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\
 C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Admin\Index.cshtml.g.cs
 C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Admin\ModifyAuthor.cshtml.g.cs
 C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Admin\ModifyReview.cshtml.g.cs
-C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Admin\Report.cshtml.g.cs
 C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Admin\TableMaintenance.cshtml.g.cs
 C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Shared\Admin_Layout.cshtml.g.cs
 C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Shared\Author_Layout.cshtml.g.cs
@@ -312,3 +311,14 @@ C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\
 C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\SignUp\Index.cshtml.g.cs
 C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Reviewer\openReview.cshtml.g.cs
 C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Login\RetrievePassword.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Author\PaperSubmitted.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Author\EditAuthorInfo.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Reviewer\EditReviewerInfo.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Admin\ScoreReport.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Admin\Report.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Admin\AuthorReport.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Admin\ReviewerReport.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Admin\CommentReport.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Admin\EnableDisableReviewerAuthor.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Reviewer\disabled.cshtml.g.cs
+C:\Users\jayle\OneDrive\Documents\GitHub\CPMS\CPMS\obj\Debug\net5.0\Razor\Views\Author\disabled.cshtml.g.cs

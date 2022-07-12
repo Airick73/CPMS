@@ -8,7 +8,7 @@ namespace CPMS.Models
     public class ReviewerModel
     {
         public string ReviewerID { get; set; }
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } 
         public string MiddleInitial { get; set; }
         public string LastName { get; set; }
         public string Affiliation { get; set; }

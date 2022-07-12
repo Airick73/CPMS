@@ -2,29 +2,7 @@
     Layout = "~/Views/Shared/Reviewer_Layout.cshtml";
     string[] TableHeaders = new string[] {
          " "
-        ,"ReviewID"
-        ,"PaperID"
-        ,"ReviewerID"
-        ,"AppropriatenessOfTopic"
-        ,"TimelinessOfTopic"
-        ,"SupportiveEvidence"
-        ,"TechnicalQuality"
-        ,"ScopeOfCoverage"
-        ,"CitationOfPreviousWork"
-        ,"Originality"
-        ,"ContentComments"  
-        ,"OrganizationOfPaper"
-        ,"ClarityOfMainMessage"
-        ,"Mechanics"
-        ,"WrittenDocumentComments"
-        ,"SuitabilityForPresentation"
-        ,"PotentialInterestInTopic"
-        ,"PotentialForOralPresentationComments"
-        ,"OverallRating"
-        ,"OverallRatingComments"
-        ,"ComfortLevelTopic"
-        ,"ComfortLevelAcceptability"
-        ,"Complete"
+        ,"Paper Title"
         };
 }
 
@@ -54,37 +32,21 @@
             @{
                 if (Model != null)
                 {
+                    int i = 0;
                     foreach (var Data in Model)
                     {
+                        
                         <tr>
                             <td><a asp-controller="Reviewer" asp-action="openReview" asp-route-ReviewID="@Data.ReviewID" asp-route-ReviewerID="@Data.ReviewerID">Review Paper</a></td>
-                            <td>@Data.ReviewID</td>
-                            <td>@Data.PaperID</td>
-                            <td>@Data.ReviewerID</td>
-                            <td>@Data.AppropriatenessOfTopic</td>
-                            <td>@Data.TimelinessOfTopic</td>
-                            <td>@Data.SupportiveEvidence</td>
-                            <td>@Data.TechnicalQuality</td>
-                            <td>@Data.ScopeOfCoverage</td>
-                            <td>@Data.CitationOfPreviousWork</td>
-                            <td>@Data.Originality</td>
-                            <td>@Data.ContentComments</td>
-                            <td>@Data.OrganizationOfPaper</td>
-                            <td>@Data.ClarityOfMainMessage</td>
-                            <td>@Data.Mechanics</td>
-                            <td>@Data.WrittenDocumentComments</td>
-                            <td>@Data.SuitabilityForPresentation</td>
-                            <td>@Data.PotentialInterestInTopic</td>
-                            <td>@Data.PotentialForOralPresentationComments</td>
-                            <td>@Data.OverallRating</td>
-                            <td>@Data.OverallRatingComments</td>
-                            <td>@Data.ComfortLevelTopic</td>
-                            <td>@Data.ComfortLevelAcceptability</td>
-                            <td>@Data.Complete</td>
+                            <td><a href="~/static/@ViewBag.list[i].FilenameOriginal" target="_blank">View Paper</a></td>
                         </tr>
+                        i++;
                     }
                 }
             }
         </tbody>
     </table>
 </div>
+
+<br />
+<br />

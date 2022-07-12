@@ -87,7 +87,7 @@ namespace CPMS.Services
                                     "ComfortLevelAcceptability = '" + review.ComfortLevelAcceptability + "', " +
                                     "Complete = '" + review.Complete + "' " +
                                     "WHERE " +
-                                    "ReviewID='" + review.ReviewID + "'";
+                                    "ReviewID=" + review.ReviewID + "";
                 com.ExecuteReader();
                 con.Close();
             }
@@ -224,6 +224,114 @@ namespace CPMS.Services
                 throw ex;
             }
             return model;
+        }
+
+        public void ModifyReviewerData(ReviewerModel reviewer)
+        {
+            try
+            {
+                con.Open();
+                com.Connection = con;
+                com.CommandText = "UPDATE " +
+                                    "[CPMS].[dbo].[Reviewer] " +
+                                    "SET " +
+                                    "FirstName = '" + reviewer.FirstName + "', " +
+                                    "MiddleInitial = '" + reviewer.MiddleInitial + "', " +
+                                    "LastName = '" + reviewer.LastName + "', " +
+                                    "Affiliation = '" + reviewer.Affiliation + "', " +
+                                    "Department = '" + reviewer.Department + "', " +
+                                    "Address = '" + reviewer.Address + "', " +
+                                    "City = '" + reviewer.City + "', " +
+                                    "State = '" + reviewer.State + "', " +
+                                    "ZipCode = '" + reviewer.ZipCode + "', " +
+                                    "PhoneNumber = '" + reviewer.PhoneNumber + "', " +
+                                    "EmailAddress = '" + reviewer.EmailAddress + "', " +
+                                    "Password = '" + reviewer.Password + "' " +
+                                    "WHERE " +
+                                    "ReviewerID='" + reviewer.ReviewerID + "'";
+                com.ExecuteReader();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //function to modify author where ModifyReviewer
+        //lots of boiler plate code to open connection...set connection to command...execute sql command
+        public ReviewerModel ModifyReviewer(string ReviewerID)
+        {
+            ReviewerModel model = new ReviewerModel();
+            try
+            {
+                con.Open();
+                com.Connection = con;
+                com.CommandText = com.CommandText = "SELECT " +
+                                                    "[ReviewerID]," +
+                                                    "[FirstName]," +
+                                                    "[MiddleInitial]," +
+                                                    "[LastName]," +
+                                                    "[Affiliation]," +
+                                                    "[Department]," +
+                                                    "[Address]," +
+                                                    "[City]," +
+                                                    "[State]," +
+                                                    "[ZipCode]," +
+                                                    "[PhoneNumber], " +
+                                                    "[EmailAddress], " +
+                                                    "[Password] " +
+                                                    "FROM " +
+                                                    "[CPMS].[dbo].[Reviewer] " +
+                                                    "WHERE " +
+                                                    "ReviewerID='" + ReviewerID + "'";
+                dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    //Storing row elements in ViewBag variables
+                    //ViewBag variables set as default values in ModifyAuthor view
+                    model.ReviewerID = dr["ReviewerID"].ToString();
+                    model.FirstName = dr["FirstName"].ToString();
+                    model.MiddleInitial = dr["MiddleInitial"].ToString();
+                    model.LastName = dr["LastName"].ToString();
+                    model.Affiliation = dr["Affiliation"].ToString();
+                    model.Department = dr["Department"].ToString();
+                    model.Address = dr["Address"].ToString();
+                    model.City = dr["City"].ToString();
+                    model.State = dr["State"].ToString();
+                    model.ZipCode = dr["ZipCode"].ToString();
+                    model.PhoneNumber = dr["PhoneNumber"].ToString();
+                    model.EmailAddress = dr["EmailAddress"].ToString();
+                    model.Password = dr["Password"].ToString();
+
+                }
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return model;
+        }
+
+        public void SetDefaultTable(DefaultModel model)
+        {
+            try
+            {
+                con.Open();
+                com.Connection = con;
+                com.CommandText = "UPDATE " +
+                                    "[CPMS].[dbo].[Defaults] " +
+                                    "SET " +
+                                    "EnabledReviewers = '" + model.EnableReviewers + "', " +
+                                    "EnabledAuthors = '" + model.EnableAuthors + "' ";
+                com.ExecuteReader();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 

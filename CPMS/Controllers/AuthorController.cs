@@ -1,9 +1,14 @@
 ﻿using CPMS.Models;
+using CPMS.Services;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace CPMS.Controllers
 {
@@ -14,24 +19,38 @@ namespace CPMS.Controllers
         SqlConnection con = new SqlConnection();
         List<PaperModel> papers = new List<PaperModel>();
         private readonly ILogger<AuthorController> _logger;
+        GetData requestData = new GetData();
+
+        IHostingEnvironment _hostingEnvironment = null;
 
 
-        public AuthorController(ILogger<AuthorController> logger)
+        public AuthorController(ILogger<AuthorController> logger, IHostingEnvironment hostingEnvironment)
         {
             _logger = logger;
             con.ConnectionString = CPMS.Properties.Resources.ConnectionString;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         //Index page of author
+        [HttpGet]
         public IActionResult Index()
         {
-            ViewBag.AuthorID = UserModel.userID;
-            ViewBag.Email = UserModel.EmailAddress;
-            return View();
+            if (requestData.FetchEnableAuthors()) { return View(); }
+            else { return View("disabled"); }
         }
 
-        public IActionResult AddPaperData(PaperModel paper)
+        [HttpPost]
+        public IActionResult Index(PaperModel paper, [FromServices] IHostingEnvironment hostingEnvironment)
         {
+            string paperName = paper.PaperPdf.FileName;
+            string uniquePaperName = Guid.NewGuid().ToString() + "_" + paperName;
+            string fileName = $"{hostingEnvironment.WebRootPath}\\static\\{paper.PaperPdf.FileName}";
+            using(FileStream fileStream = System.IO.File.Create(fileName))
+            {
+                paper.PaperPdf.CopyTo(fileStream);
+                fileStream.Flush();
+            }
+
             try
             {
                 con.Open();
@@ -80,8 +99,8 @@ namespace CPMS.Controllers
                                     "OtherDescription) " +
                                     "VALUES " +
                                     "('" + paper.AuthorID + "', " +
-                                    "'" + paper.FilenameOriginal + "', " +
-                                    "'" + paper.Filename + "', " +
+                                    "'" + uniquePaperName + "', " +
+                                    "'" + paperName + "', " +
                                     "'" + paper.Title + "', " +
                                     "'" + paper.Certification + "', " +
                                     "'" + paper.NotesToReviewers + "', " +
@@ -128,6 +147,47 @@ namespace CPMS.Controllers
                 throw ex;
             }
 
+            return View();
+
+        }
+
+
+        public IActionResult PaperSubmitted()
+        {
+            return View();
+        }
+
+
+        [HttpGet]
+        public IActionResult EditAuthorInfo()
+        {
+            AuthorModel model = new AuthorModel();
+            ModifyData ModifyData = new ModifyData();
+            model = ModifyData.ModifyAuthor((UserModel.userID).ToString());
+
+            //Storing row elements in ViewBag variables
+            //ViewBag variables set as default values in ModifyAuthor view
+            ViewBag.AuthorID = model.AuthorID;
+            ViewBag.FirstName = model.FirstName;
+            ViewBag.MiddleInitial = model.MiddleInitial;
+            ViewBag.LastName = model.LastName;
+            ViewBag.Affiliation = model.Affiliation;
+            ViewBag.Department = model.Department;
+            ViewBag.Address = model.Address;
+            ViewBag.City = model.City;
+            ViewBag.State = model.State;
+            ViewBag.ZipCode = model.ZipCode;
+            ViewBag.PhoneNumber = model.PhoneNumber;
+            ViewBag.EmailAddress = model.EmailAddress;
+            ViewBag.Password = model.Password;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult EditAuthorInfo(AuthorModel author)
+        {
+            ModifyData ModifyData = new ModifyData();
+            ModifyData.ModifyAuthorData(author);
             return View("Index");
         }
     }

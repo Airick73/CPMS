@@ -1,4 +1,7 @@
-﻿namespace CPMS.Models
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+
+namespace CPMS.Models
 {
     public class PaperModel
     {
@@ -44,6 +47,10 @@
         public string WebAndInternetProgramming { get; set; }
         public string Other { get; set; }
         public string OtherDescription { get; set; }
+        public IFormFile PaperPdf { get; set; }
+        public string Path { get; set; }
+        public int FileID { get; set; }
+
 
     }
 }

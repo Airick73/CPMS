@@ -42,5 +42,16 @@ namespace CPMS.Controllers
             return View("Index");
         }
 
+        public IActionResult Logout()
+        {
+            UserModel.EmailAddress = "";
+            UserModel.Password = "";
+            UserModel.userID = -1;
+            UserModel.userType = false;
+            UserModel.valid = false;
+
+            return View("Index");
+        }
+
     }
 }

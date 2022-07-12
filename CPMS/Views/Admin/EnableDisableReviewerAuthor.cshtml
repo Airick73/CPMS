@@ -1,0 +1,41 @@
+﻿@{
+    @model CPMS.Models.DefaultModel
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h4>Enable/Disable Author and Reviewer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SetDefaultTable">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EnableAuthors" class="control-label"></label>
+                <select asp-for="EnableAuthors" class="form-control">                       
+                            <option value="true">Enable</option>
+                            <option value="false">Disable</option>
+                </select>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnableReviewers" class="control-label"></label>
+                <select asp-for="EnableReviewers" class="form-control">
+                    <option value="true">Enable</option>
+                    <option value="false">Disable</option>
+                </select>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
